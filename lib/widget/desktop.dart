@@ -2,17 +2,27 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class DeskTop extends StatelessWidget {
-  const DeskTop(
-      {super.key,
-      this.width = 75,
-      this.height = 300,
-      this.thickness = 3,
-      this.yDistance = 80.0});
+class DeskTop extends StatefulWidget {
+  const DeskTop({
+    super.key,
+    this.width = 75,
+    this.height = 300,
+    this.thickness = 3,
+    this.yDistance = 80.0,
+    this.shouldSlide = true,
+  });
   final double width;
   final double height;
   final double thickness;
   final double yDistance;
+  final bool shouldSlide;
+
+  @override
+  State<DeskTop> createState() => _DeskTopState();
+}
+
+class _DeskTopState extends State<DeskTop> {
+  double xDistance = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +30,8 @@ class DeskTop extends StatelessWidget {
       alignment: Alignment.center,
       transform: Matrix4.identity()
         // ..setEntry(3, 2, 0.001)
-        ..translate(0.0, yDistance, -(height / 2).toDouble())
+        ..translate(
+            xDistance, widget.yDistance, -(widget.height / 2).toDouble())
         ..rotateX(pi / 2)
         ..rotateY(pi),
       child: Stack(
@@ -30,54 +41,54 @@ class DeskTop extends StatelessWidget {
             transform: Matrix4.identity()..translate(0.0, 0.0, -1.0),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black), color: Colors.brown),
-            height: height,
-            width: width,
+            height: widget.height,
+            width: widget.width,
           ),
           Container(
             transformAlignment: Alignment.center,
             transform: Matrix4.identity()
-              ..translate(-(thickness / 2).toDouble(), 0.0, -.5)
+              ..translate(-(widget.thickness / 2).toDouble(), 0.0, -.5)
               ..rotateY(pi / 2),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.brown[900]!),
                 color: Colors.brown),
-            height: height,
-            width: thickness,
+            height: widget.height,
+            width: widget.thickness,
           ),
           Container(
             transformAlignment: Alignment.center,
             transform: Matrix4.identity()
-              ..translate(
-                  (width - 5).toDouble(), 0.0, -(thickness / 2).toDouble())
+              ..translate((widget.width - 5).toDouble(), 0.0,
+                  -(widget.thickness / 2).toDouble())
               ..rotateY(pi / 2),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.brown[900]!),
                 color: Colors.brown),
-            height: height,
-            width: thickness,
+            height: widget.height,
+            width: widget.thickness,
           ),
           Container(
             transformAlignment: Alignment.center,
             transform: Matrix4.identity()
-              ..translate(0.0, -5.0, -(thickness / 2).toDouble())
+              ..translate(0.0, -5.0, -(widget.thickness / 2).toDouble())
               ..rotateX(pi / 2),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.brown[900]!),
                 color: Colors.brown),
-            height: thickness,
-            width: width,
+            height: widget.thickness,
+            width: widget.width,
           ),
           Container(
             transformAlignment: Alignment.center,
             transform: Matrix4.identity()
-              ..translate(
-                  0.0, (height - 5).toDouble(), -(thickness / 2).toDouble())
+              ..translate(0.0, (widget.height - 5).toDouble(),
+                  -(widget.thickness / 2).toDouble())
               ..rotateX(pi / 2),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.brown[900]!),
                 color: Colors.brown),
-            height: thickness,
-            width: width,
+            height: widget.thickness,
+            width: widget.width,
           ),
         ],
       ),

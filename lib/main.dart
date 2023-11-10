@@ -20,6 +20,7 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   Offset cubeOffset = Offset.zero;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -53,7 +54,9 @@ class _MainAppState extends State<MainApp> {
                   ..translate(0.0, 300.0)
                   ..rotateX(-pi / 2),
                 child: const PaintedContainer()),
-            const DeskTop(),
+            const DeskTop(
+              shouldSlide: false,
+            ),
             Container(
               transformAlignment: Alignment.center,
               transform: Matrix4.identity()..translate(0.0, 225.0, -300),
@@ -88,8 +91,28 @@ class _MainAppState extends State<MainApp> {
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.brown[900]!),
                   color: Colors.brown),
-              height: 230,
-              width: 77,
+              height: 195,
+              width: 35,
+            ),
+            Container(
+              transformAlignment: Alignment.center,
+              transform: Matrix4.identity()
+                ..translate(0.0, -75.0, -77.0)
+                ..rotateX(pi / 2),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.brown[900]!),
+                  color: Colors.brown),
+              height: 150,
+              width: 35,
+            ),
+            Container(
+              transformAlignment: Alignment.center,
+              transform: Matrix4.identity()..translate(0.0, 0.0, -77.5),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.brown[900]!),
+                  color: Colors.brown),
+              height: 93,
+              width: 35,
             ),
           ],
         ),
