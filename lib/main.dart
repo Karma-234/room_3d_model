@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_analog_clock/flutter_analog_clock.dart';
+import 'package:render_3d/widget/chair.dart';
 
 import 'widget/desktop.dart';
 import 'widget/painted_container.dart';
@@ -34,7 +35,7 @@ class _MainAppState extends State<MainApp> {
               const SizedBox(
                 width: 100,
               ),
-              const Plank(),
+              const Chair(),
             ],
           ),
         ),
@@ -122,6 +123,12 @@ class _MainAppState extends State<MainApp> {
                   color: Colors.brown),
               height: 93,
               width: 35,
+            ),
+            Transform(
+              transform: Matrix4.identity()
+                ..translate(100.0, 195.0, -100.0)
+                ..rotateY(pi / 2),
+              child: const Chair(),
             ),
           ],
         ),
