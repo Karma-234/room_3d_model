@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_analog_clock/flutter_analog_clock.dart';
 
 import 'widget/desktop.dart';
-import 'widget/graph_painter.dart';
 import 'widget/painted_container.dart';
+import 'widget/plank.dart';
 
 void main() {
   runApp(const MainApp());
@@ -27,7 +27,16 @@ class _MainAppState extends State<MainApp> {
       home: Scaffold(
         body: Align(
           alignment: Alignment.center,
-          child: cubeRotator(),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              cubeRotator(),
+              const SizedBox(
+                width: 100,
+              ),
+              const Plank(),
+            ],
+          ),
         ),
       ),
     );
